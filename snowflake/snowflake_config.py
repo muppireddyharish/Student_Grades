@@ -1,7 +1,7 @@
 snowflake_config = {
-    'user': 'mharishr',
+    'user': '****',
     'password': '****',
-    'account': 'lwb54221.us-east-1',
+    'account': '****',
     'region': 'us-east-1',
     'warehouse': 'COMPUTE_WH',
     'database': 'STUDENTS_STAGING',
