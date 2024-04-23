@@ -2,6 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from load_student_data_to_snowflake import ingest_student_data_to_snowflake
+from airflow.operators.empty import EmptyOperator
 
 # Define the default arguments for the DAG
 default_args = {
@@ -9,7 +10,7 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 4, 19),
+    'start_date': datetime(2024, 4, 22),
     'email_on_failure': False,
     'email_on_retry': False,
 }
@@ -23,6 +24,15 @@ with DAG(
     tags=['JSON', 'SNOWFLAKE', 'STUDENT_DATA'],
     catchup=False,
 ) as dag:
+    # Define the start and end tasks
+    start = EmptyOperator(
+        task_id="start"
+    )
+
+    end = EmptyOperator(
+        task_id="end"
+    )
+
     # Define the task to execute the Python function
     task_ingest_student_data_to_snowflake = PythonOperator(
         task_id='ingest_student_data_to_snowflake',
@@ -30,4 +40,4 @@ with DAG(
     )
 
     # Define the dependency between tasks
-    task_ingest_student_data_to_snowflake
+    start >> task_ingest_student_data_to_snowflake >> end
