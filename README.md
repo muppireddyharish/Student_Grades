@@ -17,3 +17,25 @@ Details
 6. Create Snowflake connection using Snowflake config. Some of the snowflake config details like username, password and account name should be stored in env files, and never be included in the code.
 7. Write the final dataframe to Snowflake table STUDENTS_STAGING.STUDENTS_STG.STUDENTS_MERGED_DB and create the view STUDENTS_SEMANTIC.STUDENTS.VW_STUDENTS using execute() method.
 
+Scope for Enhancements:
+
+1. The snowflake table to have audit columns like record_load_ts, load_user etc
+2. The logging and error handling can be enhanced.
+3. Better way to handle secrets.
+4. Better organize the code.
+5. Define the snowflake roles for better governance.
+
+
+Output
+STUDENTS_STAGING.STUDENTS_STG.STUDENTS_MERGED_DB
+
+
+
+
+STUDENTS_SEMANTIC.STUDENTS.VW_STUDENTS
+
+
+
+
+
+![image](https://github.com/muppireddyharish/Student_Grades/assets/167728482/fde2817a-309c-432a-83ad-ee47662262ae)
